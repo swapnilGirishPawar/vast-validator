@@ -104,6 +104,17 @@ Disable color (plain text):
 vast-validate .\vast.xml --schema-dir .\schemas --response-json .\response.json --no-color
 ```
 
+### 5) Save report file (overwrites every run)
+
+By default, each run writes a formatted report to:
+- `.\vast_validation_report.txt`
+
+Custom report filename:
+
+```bash
+vast-validate .\vast.xml --schema-dir .\schemas --response-json .\response.json --report-file .\team_report.txt
+```
+
 Example output:
 
 ```json

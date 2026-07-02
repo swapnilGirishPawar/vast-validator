@@ -7,3 +7,5 @@ __pycache__/
 build/
 dist/
 response.json
+team_report.txt
+vast_validation_report.txt

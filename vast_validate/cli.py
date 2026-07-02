@@ -112,6 +112,8 @@ def _build_text_report(result, context: dict[str, str | None], enable_color: boo
         lines.append(_c("STATUS   : PASS", Fore.GREEN + Style.BRIGHT, enable_color))
         lines.append(f"VERSION  : {result.vast_version or 'unknown'}")
         lines.append(f"SCHEMA   : {result.schema_path}")
+        if result.schema_resolution_note:
+            lines.append(f"SCHEMA-NOTE: {result.schema_resolution_note}")
         if context:
             lines.append(
                 "CONTEXT  : "
@@ -126,6 +128,8 @@ def _build_text_report(result, context: dict[str, str | None], enable_color: boo
     lines.append(_c("STATUS   : FAIL", Fore.RED + Style.BRIGHT, enable_color))
     lines.append(f"VERSION  : {result.vast_version or 'unknown'}")
     lines.append(f"SCHEMA   : {result.schema_path}")
+    if result.schema_resolution_note:
+        lines.append(f"SCHEMA-NOTE: {result.schema_resolution_note}")
     first_error = result.errors[0] if result.errors else None
     if first_error:
         summary_text = (
@@ -198,6 +202,7 @@ def _print_json(result, context: dict[str, str | None]) -> int:
         "is_valid": result.is_valid,
         "vast_version": result.vast_version,
         "schema_path": str(result.schema_path) if result.schema_path else None,
+        "schema_resolution_note": result.schema_resolution_note,
         "summary": None,
         "context": context or None,
         "errors": [

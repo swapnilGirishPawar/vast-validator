@@ -43,6 +43,20 @@ Place your XSD files in `schemas/` with this naming:
 
 You can use official VAST schemas from IAB Tech Lab and/or your own customized schemas.
 
+Schema auto-detection is flexible. It can parse versions from names like:
+- `vast_3.0.xsd`
+- `VAST_3.0.xsd`
+- `vast4.0.xsd`
+- `vast_2.0.1.xsd`
+
+Fallback behavior when exact version is missing:
+- first try exact version
+- then same major+minor patch (example: `2.0` -> `2.0.1`)
+- then latest schema within same major
+- then latest schema overall
+
+The chosen behavior is shown as `SCHEMA-NOTE` in output.
+
 ## Usage
 
 ### 0) Extract `vast.xml` from OpenRTB response JSON
